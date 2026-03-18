@@ -12,7 +12,7 @@ video_path = input("\nEnter the full path to your video file: ").strip('"').stri
 
 # Check if video exists
 if not os.path.exists(video_path):
-    print(f"\n❌ ERROR: Video file not found at: {video_path}")
+    print(f"\n ERROR: Video file not found at: {video_path}")
     print("Please check the path and try again.")
     input("Press Enter to exit...")
     exit()
@@ -20,7 +20,7 @@ if not os.path.exists(video_path):
 # Open video
 video = cv2.VideoCapture(video_path)
 if not video.isOpened():
-    print("\n❌ ERROR: Cannot open video file.")
+    print("\n ERROR: Cannot open video file.")
     print("Make sure the video format is supported (mp4, avi, mov, etc.)")
     input("Press Enter to exit...")
     exit()
@@ -30,7 +30,7 @@ fps = video.get(cv2.CAP_PROP_FPS)
 total_frames = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
 duration = total_frames / fps
 
-print(f"\n✅ Video loaded successfully!")
+print(f"\n Video loaded successfully!")
 print(f"   Duration: {duration:.2f} seconds")
 print(f"   FPS: {fps:.2f}")
 print(f"   Total frames: {total_frames}")
@@ -38,7 +38,7 @@ print(f"   Total frames: {total_frames}")
 # Read first frame
 ret, frame = video.read()
 if not ret:
-    print("\n❌ ERROR: Cannot read first frame.")
+    print("\n ERROR: Cannot read first frame.")
     input("Press Enter to exit...")
     exit()
 
@@ -59,11 +59,11 @@ bbox = cv2.selectROI('SELECT OBJECT TO TRACK', frame, False, False)
 cv2.destroyWindow('SELECT OBJECT TO TRACK')
 
 if bbox[2] == 0 or bbox[3] == 0:
-    print("\n❌ No object selected. Exiting...")
+    print("\n No object selected. Exiting...")
     input("Press Enter to exit...")
     exit()
 
-print(f"\n✅ Object selected: x={bbox[0]}, y={bbox[1]}, width={bbox[2]}, height={bbox[3]}")
+print(f"\n Object selected: x={bbox[0]}, y={bbox[1]}, width={bbox[2]}, height={bbox[3]}")
 
 # Choose tracker
 print("\n" + "="*60)
@@ -85,7 +85,7 @@ else:
     tracker = cv2.TrackerCSRT_create()
     tracker_name = "CSRT"
 
-print(f"\n✅ Using {tracker_name} tracker")
+print(f"\n Using {tracker_name} tracker")
 
 # Initialize tracker
 tracker.init(frame, bbox)
@@ -179,7 +179,7 @@ while True:
     
     # Check for quit
     if cv2.waitKey(1) & 0xFF == ord('q'):
-        print("\n⚠️ Tracking stopped by user")
+        print("\n Tracking stopped by user")
         break
 
 # Cleanup
@@ -192,9 +192,9 @@ csv_file.close()
 print("\n" + "="*60)
 print("TRACKING COMPLETE!")
 print("="*60)
-print(f"✅ Tracked {success_count}/{frame_number} frames successfully")
+print(f" Tracked {success_count}/{frame_number} frames successfully")
 print(f"   Success rate: {(success_count/frame_number)*100:.1f}%")
-print(f"\n📁 Output files saved:")
+print(f"\n Output files saved:")
 print(f"   Video: {output_video_path}")
 print(f"   Data:  {output_csv_path}")
 print("="*60)
