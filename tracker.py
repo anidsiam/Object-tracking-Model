@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 print("="*60)
-print("VIDEO OBJECT TRACKER - For Fiverr Project")
+print("VIDEO OBJECT TRACKER")
 print("="*60)
 
 # Get video path from user
@@ -198,5 +198,5 @@ print(f"\n Output files saved:")
 print(f"   Video: {output_video_path}")
 print(f"   Data:  {output_csv_path}")
 print("="*60)
-print("\nYou can now deliver these files to your client!")
+print("\nYour file is ready!")
 input("\nPress Enter to exit...")
